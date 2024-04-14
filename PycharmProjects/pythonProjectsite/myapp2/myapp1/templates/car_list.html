@@ -1,0 +1,45 @@
+
+    <form method="GET" action="{% url 'car_list' %}">
+        <input type="text" name="q" placeholder="Search by title or description">
+        <select name="marka">
+            <option value="" selected>All Marka</option>
+            {% for marka in markas %}
+                <option value="{{ marka.name }}">{{ marka.name }}</option>
+            {% endfor %}
+        </select>
+        <select name="model">
+            <option value="" selected>All Model</option>
+            {% for model in models %}
+                <option value="{{ model.name }}">{{ model.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="number" name="price_from" placeholder="Price from">
+        <input type="number" name="price_to" placeholder="Price to">
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for car in cars %}
+            <li>
+                <a href="{% url 'car_detail' car.pk %}">
+                    <img src="{{ car.carphoto_set.first.image.url }}" alt="Car Photo">
+                </a>
+                <p><a href="{% url 'car_detail' car.pk %}">{{ car.title }}</a></p>
+                <p>{{ car.year }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+<ul>
+    {% for i in car %}
+    <li>
+        <a href="{% url 'car_detail' i.pk %}">
+            <img src="{{ i.carphoto_set.first.image.url }}" alt="Car Photo">
+        </a>
+        <p><a href="{% url 'car_detail' i.pk %}">{{ i.title }}</a></p>
+        <p>{{ i.year }}</p>
+    </li>
+
+    {%  endfor %}
+</ul>
+

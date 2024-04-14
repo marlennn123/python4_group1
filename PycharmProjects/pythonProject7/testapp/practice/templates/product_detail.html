@@ -1,0 +1,35 @@
+<h2>{{ product.title }}</h2>
+<p>Year: {{ product.year }}</p>
+<p>Price: {{ product.price }}</p>
+<p>Description: {{ product.description }}</p>
+<p>Category: {{ product.category }}</p>
+<p>Box: {{ product.box }}</p>
+
+
+<h2>Photos:</h2>
+<ul>
+    {% for photos in photos %}
+    <li>
+        <img src="{{ photo.image.url }}" alt="Product Photo">
+    </li>
+    {% empty %}
+    <li>No photos available</li>
+    {% endfor %}
+</ul>
+
+<h2>Comments:</h2>
+<ul>
+    {% for comment in comments %}
+    <li>
+        <p>autor: {{ comment.autor }}</p>
+        <p>Text: {{ comment.text }}</p>
+        <p>Date: {{ comment.date }}</p>
+        <p>Product: {{ comment.product }}</p>
+    </li>
+    {% empty %}
+    <li>No comments available</li>
+    {% endfor %}
+</ul>
+
+
+<button><a href="{% url 'product_update' product.pk %}" >Update</a></button>

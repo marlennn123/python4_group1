@@ -1,0 +1,34 @@
+<h1>{{ car.title }}</h1>
+<p>Marka: {{ car.marka }}</p>
+<p>Model: {{ car.model }}</p>
+<p>Description: {{ car.description }}</p>
+<p>Price: {{ car.price }}</p>
+<p>Year: {{ car.year }}</p>
+<p>Box: {{ car.box }}</p>
+
+<h2>Photos:</h2>
+<ul>
+    {% for photo in photos %}
+    <li>
+        <img src="{{ photo.image.url }}" alt="Car Photo">
+    </li>
+    {% empty %}
+    <li>No photos available</li>
+    {% endfor %}
+</ul>
+
+<h2>Comments:</h2>
+<ul>
+    {% for comment in comments %}
+    <li>
+        <p>User: {{ comment.user }}</p>
+        <p>Text: {{ comment.text }}</p>
+        <p>Date: {{ comment.date }}</p>
+    </li>
+    {% empty %}
+    <li>No comments available</li>
+    {% endfor %}
+</ul>
+
+
+<button><a href="{% url 'car_update' car.pk %}" >Update</a></button>

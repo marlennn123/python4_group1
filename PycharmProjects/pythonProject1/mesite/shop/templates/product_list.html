@@ -1,0 +1,26 @@
+<form method="GET" action="{% url 'product_list' %}">
+    <input type="text" name="q" placeholder="Search by name">
+    <select name="category">
+        <option value="" selected>All Categories</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.title }}</option>
+        {% endfor %}
+    </select>
+    <label for="active">Active:</label>
+    <select name="active">
+        <option value="" selected>All</option>
+        <option value="True">True</option>
+        <option value="False">False</option>
+    </select>
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+    {%for product in products %}
+    <li>
+        <a href="{% url 'product_detail' product.pk%}">{{product.name}}</a>
+        <p>{{product.created_date}}</p>
+    </li>
+    {% endfor %}
+</ul>
+    <button><a href="{% url 'product_create' %}">Create</a> </button>

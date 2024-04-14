@@ -1,0 +1,8 @@
+Do you want delete this product?
+
+<form method="post">
+    {% csrf_token %}
+
+    <button type="submit">Yes</button>
+</form>
+<button><a href="{% url 'product_list' %}">No</a> </button>

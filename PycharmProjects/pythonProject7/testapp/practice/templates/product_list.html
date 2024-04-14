@@ -1,0 +1,44 @@
+
+    <form method="GET" action="{% url 'product_list' %}">
+        <input type="text" name="q" placeholder="Search by title or description">
+        <select name="category">
+            <option value="" selected>All Category</option>
+            {% for category in category %}
+                <option value="{{ category.name }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <select name="product">
+            <option value="" selected>All Product</option>
+            {% for product in product %}
+                <option value="{{ product.title }}">{{ product.title }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for product in product %}
+            <li>
+                <a href="{% url 'product_detail' product.pk %}">
+                    <img src="{{ product.productphoto_set.first.image.url }}" alt="Product Photo">
+                </a>
+                <p><a href="{% url 'product_detail' product.pk %}">{{ product.title }}</a></p>
+                <p>{{ product.year }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+<ul>
+    {% for i in product %}
+    <li>
+        <a href="{% url 'product_detail' i.pk %}">
+            <img src="{{ i.productphoto_set.first.image.url }}" alt="Product Photo">
+        </a>
+        <p><a href="{% url 'product_detail' i.pk %}">{{ i.title }}</a></p>
+        <p>{{ i.year }}</p>
+    </li>
+
+    {%  endfor %}
+</ul>
+
